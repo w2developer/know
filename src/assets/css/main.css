@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('./swal.css');
+
+:root {
+    /* Sizes em rem (base 16px) */
+    --k-size-4: 0.25rem;
+    --k-size-6: 0.375rem;
+    --k-size-8: 0.5rem;
+    --k-size-10: 0.625rem;
+    --k-size-12: 0.75rem;
+    --k-size-14: 0.875rem;
+    --k-size-16: 1rem;
+    --k-size-20: 1.25rem;
+    --k-size-24: 1.5rem;
+    --k-size-32: 2rem;
+    --k-size-40: 2.5rem;
+    --k-size-48: 3rem;
+    --k-size-64: 4rem;
+    --k-size-80: 5rem;
+    --k-size-96: 6rem;
+
+    --k-max-width-850: 850px;
+
+    /* Cores primarias */
+    --k-primary: #1D4ED8;
+    --k-primary-hover: #2563EB;
+    --k-primary-ligth: #447fff;
+    
+    /* Surface Palette (Dark Mode) */
+    --k-surface-0: #ffffff;
+    --k-surface-50: #f8fafc;
+    --k-surface-100: #f1f5f9;
+    --k-surface-200: #e2e8f0;
+    --k-surface-300: #cbd5e1;
+    --k-surface-400: #94a3b8;
+    --k-surface-500: #64748b;
+    --k-surface-600: #475569;
+    --k-surface-700: #334155;
+    --k-surface-800: #1e293b;
+    --k-surface-900: #0f172a;
+    --k-surface-950: #020617;
+
+    /* Cores Semânticas */
+    --k-content-border-color: var(--k-surface-700);
+    --k-content-hover-background: var(--k-surface-800);
+    --k-content-hover-border: var(--k-surface-600);
+    --k-focus-ring-color: var(--k-surface-400);
+    --k-form-field-background: var(--k-surface-900);
+    --k-form-field-border-color: var(--k-surface-700);
+    --k-form-field-text-color: var(--k-surface-200);
+    --k-text-color: var(--k-surface-200);
+    --k-text-muted-color: var(--k-surface-400);
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    color: var(--k-surface-100);
+    background: var(--k-surface-950);
+}
