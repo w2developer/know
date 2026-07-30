@@ -1,52 +1,55 @@
 <script setup>
-    import { onMounted } from 'vue'
+    import { onMounted, ref } from 'vue'
     import { useRoute } from 'vue-router'
+    import { supabase } from '@/supabase.js'
     import { useExercicioData } from '../../composables/useExercicioData.js'
     import ContentLayout from '../../components/ContentLayout.vue'
+    import LinkList from '../../components/LinkList.vue'
 
     const route = useRoute()
-    const idModulo = route.params.id_modulo
-
+    
     const {exercicios, carregandoExercicios, exerciciosError, queryExercicios} = useExercicioData()
+    
+    const moduloName = ref('...')
+
+    const queryModulo = async (idModulo) => {
+        try {
+            const { data, error } = await supabase
+            .from('modulos')
+            .select('id, name, image_url, level')
+            .eq('id', idModulo)
+            .single()
+
+            if (error) throw error
+
+            moduloName.value = data.name
+        } catch (err) {
+            console.error("Erro ao buscar módulo:", err)
+        }
+    }
 
     onMounted(() => {
-        queryExercicios(idModulo)
+        queryExercicios(route.query.id_modulo)
+        queryModulo(route.query.id_modulo)
     })
 </script>
 
 <template>
     <div class="container">
-        <ContentLayout link="/" title="">
-            <div class="cards">
-                <RouterLink :to="'tarefas/' + exercicio.id" v-for="exercicio in exercicios" :key="exercicio.id">
-                    <span>{{ exercicio.name }}</span>
-                    <span>0/{{ exercicio.tarefasCount }}</span>
+        <ContentLayout link="/" :title="'Exercícios de ' + moduloName">
+            <LinkList>
+                <RouterLink
+                    :to="{
+                        path: '/aluno/tarefas',
+                        query: { id_modulo: route.query.id_modulo, id_exercicio: exercicio.id }
+                    }"
+                    class="item"
+                    v-for="exercicio in exercicios"
+                    :key="exercicio.id">
+                        <span>{{ exercicio.name }}</span>
+                        <span>0/{{ exercicio.tarefasCount }}</span>
                 </RouterLink>
-            </div>
+            </LinkList>
         </ContentLayout>
     </div>
 </template>
-
-<style scoped>
-	.cards {
-		gap: 1rem;
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-	}
-	.cards a {
-		opacity: .8;
-        display: flex;
-        align-items: center;
-		transition: .3s ease;
-        justify-content: space-between;
-		border-radius: var(--k-size-4);
-		background: var(--color-gray-900);
-		border: 1px solid var(--color-gray-800);
-		padding: var(--k-size-10) var(--k-size-16);
-	}
-	.cards a:hover {
-		opacity: 1;
-		border: 1px solid var(--color-gray-700);
-	}
-</style>

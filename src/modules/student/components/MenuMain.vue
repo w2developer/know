@@ -93,9 +93,10 @@
 <template>
     <header class="flex justify-between items-center">
         <div class="box-logo">
-            <img :src="Logo" alt="" class="w-10">
+            <RouterLink to="/">
+                <img :src="Logo" alt="" class="w-10">
+            </RouterLink>
         </div>
-        
         <nav class="box-menu-mobile flex min-[1000px]:hidden">
             <Button @click="visible = true">
                 <!-- Ícone fixo do menu mobile -->

@@ -45,13 +45,19 @@
         <CustomTabs :tabs="levelData" default-value="basico">
             <template #basico>
                 <div class="cards">
-                    <RouterLink :to="'exercicios/' + modulo.id" v-for="modulo in modulosBasico" :key="modulo.id">
-                        <div class="image">
-                            <img :src="modulo.image_url" :alt="modulo.name">
-                        </div>
-                        <div class="name">
-                            <span>{{ modulo.name }}</span>
-                        </div>
+                    <RouterLink
+                        :to="{
+                            path: '/aluno/exercicio',
+                            query: { id_modulo: modulo.id }
+                        }"
+                        v-for="modulo in modulosBasico"
+                        :key="modulo.id">
+                            <div class="image">
+                                <img :src="modulo.image_url" :alt="modulo.name">
+                            </div>
+                            <div class="name">
+                                <span>{{ modulo.name }}</span>
+                            </div>
                     </RouterLink>
                 </div>
             </template>

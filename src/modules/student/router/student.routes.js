@@ -8,20 +8,16 @@ export const studentRoutes = [
                 component: () => import('@/modules/student/views/PaginaInicial.vue'),
             },
             {
-                path: 'exercicios/:id_modulo',
+                path: 'exercicio',
                 component: () => import('@/modules/student/views/exercicios/Exercicios.vue'),
-                props: true,
-                meta: {
-                    test: true
-                }
             },
             {
-                path: 'tarefas/:id_exercicio',
+                path: 'tarefas',
                 component: () => import('@/modules/student/views/exercicios/Tarefas.vue'),
-                props: true,
-                meta: {
-                    test: true
-                }
+            },
+            {
+                path: 'passos',
+                component: () => import('@/modules/student/views/exercicios/Passos.vue'),
             }
         ],
     },
